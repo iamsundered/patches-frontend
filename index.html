@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earth Patch Notes</title>
+</head>
+<body>
+<h1>Patch Notes</h1>
+<ul id="updates-list"></ul>
+
+<script>
+    async function fetchUpdates() {
+        try {
+            const response = await fetch('http://localhost:8080/api/updates');
+            const updates = await response.json();
+
+            const list = document.getElementById('updates-list');
+            list.innerHTML = ''; //Clears old list
+
+            updates.forEach(update => {
+                const item = document.createElement('li');
+                item.innerHTML = `<strong>${update.title}</strong> (${update.date}): ${update.description}`;
+                list.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Failed to fetch updates:', error);
+        }
+    }
+
+    //Runs when page loads
+    fetchUpdates();
+</script>
+</body>
+</html>
