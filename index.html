@@ -11,7 +11,7 @@
 <script>
     async function fetchUpdates() {
         try {
-            const response = await fetch('http://localhost:8080/api/updates');
+            const response = await fetch('http://api.sundered.net/api/updates');
             const updates = await response.json();
 
             const list = document.getElementById('updates-list');
