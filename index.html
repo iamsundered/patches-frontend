@@ -1,34 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Earth Patch Notes</title>
+    <meta charset="UTF-8" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=VT323&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Earth Patch Updates</title>
 </head>
 <body>
-<h1>Patch Notes</h1>
-<ul id="updates-list"></ul>
+<div class="crt">
 
-<script>
-    async function fetchUpdates() {
-        try {
-            const response = await fetch('https://api.sundered.net/api/updates');
-            const updates = await response.json();
+    <header class="page-header">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/" class="nav-link">HOME</a></li>
+                <li><a href="/patches" class="nav-link">PATCHES</a></li>
+                <li><a href="/about" class="nav-link">ABOUT</a></li>
+                <li><a href="/contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            const list = document.getElementById('updates-list');
-            list.innerHTML = ''; //Clears old list
+    <h1 class="orangeGlow">Earth Patch Updates</h1>
+    <p class="whiteGlow">If Earth had patch notes, this would be the changelog.<br/>Keep up with real-world progress, one update at a time.</p>
 
-            updates.forEach(update => {
-                const item = document.createElement('li');
-                item.innerHTML = `<strong>${update.title}</strong> (${update.date}): ${update.description}`;
-                list.appendChild(item);
-            });
-        } catch (error) {
-            console.error('Failed to fetch updates:', error);
-        }
-    }
+    <div id="updates">
+        <form style="align-self: flex-start;">
+            <fieldset style="border: 1px solid orange">
+                <legend style="text-align: right">Latest</legend>
+                <h2 id="latest-title">Mars Update Incoming</h2>
+                <span id="latest-update"></span>
+                <small id="latest-date"></small>
+            </fieldset>
+        </form>
+        <form style="align-self: flex-start;">
+            <fieldset style="border: 1px solid blue">
+                <legend style="text-align: left">Categories</legend>
 
-    //Runs when page loads
-    fetchUpdates();
-</script>
+                <div class="container">
+                    <div class="column">
+                        <h2>ALL</h2>
+                        <h2>TECH</h2>
+                        <h2>SCIENCE</h2>
+                        <h2>SPACE</h2>
+                    </div>
+                    <div class="column">
+                        <h2>SOCIETY</h2>
+                        <h2>ENVIRONMENT</h2>
+                        <h2>CULTURE</h2>
+                        <h2>ECONOMY</h2>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div id="latest-updates-background">
+    <h1>Latest Patches</h1>
+    <div id="last-three-updates" class="three-updates-container">
+
+    </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Earth Patch Updates. All rights reserved.</p>
+    </footer>
+
+</div>
+
+<script src="/js/CRUD.js"></script>
 </body>
 </html>
