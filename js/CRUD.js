@@ -4,18 +4,30 @@ async function fetchUpdates() {
         const updates = await response.json();
 
         const list = document.getElementById('updates-list');
-        list.innerHTML = ''; //Clears old list
+        list.innerHTML = ''; // Clears old list
+
+        if (updates.length === 0) {
+            list.innerHTML = '<li>No updates available.</li>';
+            return;
+        }
 
         updates.forEach(update => {
             const item = document.createElement('li');
-            item.innerHTML = `<strong>${update.title}</strong> (${update.date}): ${update.description}`;
+            item.className = 'update-card'; // Add a class for styling
+            item.innerHTML = `
+                <small class="update-date">${update.date}</small>
+                <h3 class="update-title">${update.title}</h3>
+                <p class="update-description">${update.description}</p>
+            `;
             list.appendChild(item);
         });
     } catch (error) {
         console.error('Failed to fetch updates:', error);
+        const list = document.getElementById('updates-list');
+        list.innerHTML = '<li>Error loading updates. Please try again later.</li>';
     }
 }
-//Runs when page loads
+// Runs when page loads
 fetchUpdates();
 
 
