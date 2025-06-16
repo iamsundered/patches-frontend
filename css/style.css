@@ -18,7 +18,6 @@ body {
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    padding: clamp(0.5rem, 2vw, 1rem);
 }
 
 .crt::before {
